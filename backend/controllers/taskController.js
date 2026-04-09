@@ -254,10 +254,35 @@ const deleteTask = async (req, res) => {
   }
 };
 
+// @desc    Get dashboard statistics
+// @route   GET /api/tasks/stats
+// @access  Private
+const getStats = async (req, res) => {
+  try {
+    const totalStudents = await Student.countDocuments();
+    const totalTasks = await Task.countDocuments();
+    const pendingTasks = await Task.countDocuments({ status: 'pending' });
+    const completedTasks = await Task.countDocuments({ status: 'completed' });
+    
+    res.status(200).json(successResponse({
+      stats: {
+        totalStudents,
+        totalTasks,
+        pendingTasks,
+        completedTasks
+      }
+    }));
+  } catch (error) {
+    console.error('❌ Get stats error:', error.message);
+    res.status(500).json(errorResponse('Failed to fetch statistics', 500));
+  }
+};
+
 module.exports = {
   getTasks,
   createTask,
   completeTask,
   getTasksByStudent,
-  deleteTask
+  deleteTask,
+  getStats
 };
