@@ -459,6 +459,9 @@ json
 👨‍💻 Author
 Your Name - Yaswanth Rajana
 
+🌐 Live Application:
+Frontend: https://gridaan-school-management.vercel.app
+Backend: https://gridaan-backend.onrender.com
 
 🙏 Acknowledgments
 Gridaan Hiring Team for this opportunity
