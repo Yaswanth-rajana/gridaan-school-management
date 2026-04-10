@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
@@ -13,7 +12,12 @@ connectDB();
 const app = express();
 
 // Middleware (ORDER MATTERS)
-app.use(cors());           
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'https://gridaan-school-management.vercel.app',
+  credentials: true
+}));
 app.use(express.json());   
 
 // ========== HEALTH CHECK ROUTE ==========
